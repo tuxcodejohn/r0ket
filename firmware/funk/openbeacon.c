@@ -7,7 +7,7 @@
 #include "basic/uuid.h"
 
 //const uint32_t key[4] = {0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF};
-#include "SECRETS"
+#include "../SECRETS"
 const uint8_t useencryption = 1;
 const uint8_t mac[5] = {1,2,3,2,1};
 
