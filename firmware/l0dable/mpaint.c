@@ -43,13 +43,14 @@ struct pkt {
 void ram() {
     int x = 48, y = 32;
     bool drawing = true;
-    struct pkt pkt;
+    uint8_t buf[32];
+    struct pkt *pkt = (struct pkt *)buf;
 
     lcdFill(0);
 
     while(1) {
         /* Move */
-        uint8_t key = getInputWaitTimeout(50);
+        uint8_t key = getInputRaw();
         switch(key) {
         case BTN_UP:
             y--;
@@ -75,17 +76,17 @@ void ram() {
         lcdSetPixel(x, y, drawing);
 
         /* Send */
-        pkt.x = x;
-        pkt.y = y;
-        pkt.d = drawing;
+        pkt->x = x;
+        pkt->y = y;
+        pkt->d = drawing;
         nrf_config_set(&config);
-        nrf_snd_pkt_crc(sizeof(pkt), (uint8_t *)&pkt);
+        nrf_snd_pkt_crc(sizeof(buf), buf);
 
         /* Receive */
         nrf_config_set(&config);
-        int n = nrf_rcv_pkt_time(20, sizeof(pkt), (uint8_t *)&pkt);
-        if (n == sizeof(pkt)) {
-            lcdSetPixel(pkt.x, pkt.y, pkt.d);
+        int n = nrf_rcv_pkt_time(50, sizeof(buf), buf);
+        if (n == sizeof(buf)) {
+            lcdSetPixel(pkt->x, pkt->y, pkt->d);
         }
 
         lcdDisplay();
