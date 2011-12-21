@@ -3,4 +3,8 @@
 *.a
 *.swp
 release
+<<<<<<< HEAD
 *.pyc
+=======
+releseolder
+>>>>>>> c6983642d970b75cb16df3244bf399a6e3f3a900

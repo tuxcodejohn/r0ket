@@ -15,7 +15,7 @@ char meshmsg=0;
 char meshnice=0;
 MPKT meshbuffer[MESHBUFSIZE];
 
-#include "SECRETS"
+#include "../SECRETS"
 
 struct NRF_CFG oldconfig;
 

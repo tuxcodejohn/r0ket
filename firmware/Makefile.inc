@@ -17,7 +17,10 @@ SRAM_USB = 384
 # GNU GCC compiler prefix and location
 ##########################################################################
 
-CROSS_COMPILE = arm-none-eabi-
+#FUP = /home/john/x-tools/arm-unknown-eabi/bin
+FUP = /home/john/x-tools/sourceryG++/bin
+CROSS_COMPILE = $(FUP)/arm-none-eabi-
+# CROSS_COMPILE = $(FUP)/arm-unknown-eabi-
 AS = $(CROSS_COMPILE)gcc
 CC = $(CROSS_COMPILE)gcc
 LD = $(CROSS_COMPILE)ld
